@@ -34,14 +34,17 @@ while opcion != 4:
             for j in range(cantidad):
                 print(f"Participante {j + 1}")
                 dorsal = int(input("Numero de Dorsal: "))
-                nombre = input("Nombre del participante: ")
-                edad = int(input("Edad: "))
-                categoria = input("Categoria(Juvenil,adulto,master): ")
-                carrera[dorsal] = {
-                    "nombre": nombre,
-                    "edad": edad,
-                    "categoria": categoria
-                }
+                if dorsal in carrera:
+                    print("Ya existe un participante ya registrado")
+                else:
+                    nombre = input("Nombre del participante: ")
+                    edad = int(input("Edad: "))
+                    categoria = input("Categoria(Juvenil,adulto,master): ")
+                    carrera[dorsal] = {
+                        "nombre": nombre,
+                        "edad": edad,
+                        "categoria": categoria
+                    }
 
         case 2:
             corredores = list(carrera.items())
@@ -56,8 +59,8 @@ while opcion != 4:
             print("=== Mostrar participante ordenado por edad ===")
             resultado = quick_sort(corredores, "edad")
             for dorsales, datos in resultado:
-                print(f"Edad {datos['edad']} {datos['nombre']}"
-                      f" Dorsal {dorsales} Categoria {datos['categoria']}")
+                print(f" {datos['nombre']} (Dorsal {dorsales}, "
+                      f"Edad: {datos['edad']}, Categoria: {datos['categoria']})")
 
         case 4:
             print("=== Salir ===")
